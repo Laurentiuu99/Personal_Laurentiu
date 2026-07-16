@@ -47,7 +47,7 @@ def get_python_version(executable: str) -> tuple[str, tuple[int, int, int]] | No
     except ValueError:
         return None
 
-    return output, version_tuple
+    return output, version_tuple # type: ignore
 
 
 def find_installed_python() -> tuple[str, tuple[int, int, int]] | None:
