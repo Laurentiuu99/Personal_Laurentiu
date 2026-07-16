@@ -1,0 +1,40 @@
+# Construiește imaginea
+docker build -t openstack-test .
+
+# Rulează test.py și montează credentials
+docker run --rm -it `
+  -v "${HOME}\.config\openstack:/root/.config/openstack:ro" `
+  openstack-test python test.py
+
+# Rulează test2.py
+docker run --rm -it `
+  -v "${HOME}\.config\openstack:/root/.config/openstack:ro" `
+  openstack-test python test2.py
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  Comenzi docker de baza:
+
+# Listează containerele active
+docker ps
+
+# Listează toate containerele
+docker ps -a
+
+# Listează imaginile
+docker images
+
+# Deschide un terminal în container
+docker run --rm -it openstack-test bash
+
+# Vezi logurile
+docker logs NUME_SAU_ID_CONTAINER
+
+# Oprește un container
+docker stop NUME_SAU_ID_CONTAINER
+
+# Șterge un container
+docker rm NUME_SAU_ID_CONTAINER
+
+# Șterge imaginea
+docker rmi openstack-test
